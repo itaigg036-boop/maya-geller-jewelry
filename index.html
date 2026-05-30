@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="he" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Maison Liora - בית תכשיטי יוקרה ישראלי לטבעות אירוסין, טבעות נישואין, שרשראות ועגילים בעבודת יד."
+      content="Maya Geller Jewelry - סטודיו בוטיק לתכשיטי זהב 14K, טבעות אירוסין, שרשראות ועגילים בעבודת יד בתל אביב."
     />
-    <title>Maison Liora | תכשיטי יוקרה על-זמניים</title>
+    <title>Maya Geller Jewelry | סטודיו תכשיטי זהב בתל אביב</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="image" href="frames/frame_0001.jpg" fetchpriority="high" />
@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+    <script src="shop-data.js" defer></script>
+    <script src="shop.js" defer></script>
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -31,9 +33,9 @@
     <div class="scroll-progress" aria-hidden="true"><span></span></div>
 
     <nav class="navbar" aria-label="ניווט ראשי">
-      <a class="brand magnetic" href="#top" aria-label="Maison Liora - חזרה לראש העמוד">
-        <span class="brand__mark">ML</span>
-        <span>Maison Liora</span>
+      <a class="brand magnetic" href="#top" aria-label="Maya Geller Jewelry - חזרה לראש העמוד">
+        <span class="brand__mark">MG</span>
+        <span>Maya Geller Jewelry</span>
       </a>
       <div class="nav-links">
         <a href="#top">בית</a>
@@ -46,16 +48,16 @@
     </nav>
 
     <main id="top">
-      <section class="frame-section hero-section" id="frameSection" aria-label="פתיח קולנועי של Maison Liora">
+      <section class="frame-section hero-section" id="frameSection" aria-label="פתיח קולנועי של Maya Geller Jewelry">
         <div class="canvas-stage">
-          <canvas id="heroCanvas" aria-label="אנימציית תכשיט יוקרתית בגלילה"></canvas>
+          <canvas id="heroCanvas" aria-label="אנימציית תכשיט בגלילה"></canvas>
           <div class="frame-vignette" aria-hidden="true"></div>
           <div class="hero-orb hero-orb--one" aria-hidden="true"></div>
           <div class="hero-orb hero-orb--two" aria-hidden="true"></div>
           <div class="frame-copy hero-content" id="frameCopy">
-            <p class="section-kicker reveal-text" id="frameKicker">בית תכשיטי יוקרה</p>
-            <h1 id="frameTitle">Maison Liora</h1>
-            <p id="frameLead">תכשיטים על-זמניים שנוצרים באלגנטיות</p>
+            <p class="section-kicker reveal-text" id="frameKicker">סטודיו תכשיטים בתל אביב</p>
+            <h1 id="frameTitle">Maya Geller Jewelry</h1>
+            <p id="frameLead">תכשיטי זהב בעבודת יד בתל אביב</p>
             <div class="hero-actions">
               <a href="#collections" class="button button--primary magnetic">לצפייה בקולקציות</a>
               <a href="#consultation" class="button button--ghost magnetic">קביעת ייעוץ פרטי</a>
@@ -69,13 +71,13 @@
       </section>
 
       <section class="intro-section section-shell" id="experience">
-        <p class="section-kicker reveal">אלגנטיות פריזאית. עבודת יד תל אביבית.</p>
+        <p class="section-kicker reveal">סטודיו קטן. קווים נקיים. זהב 14K.</p>
         <h2 class="mega-title split-title">
-          תכשיטים שמרגישים אישיים, יוקרתיים ונכונים לשנים קדימה.
+          תכשיטים מינימליסטיים שמרגישים אישיים ונשארים נכונים לשנים.
         </h2>
         <p class="hero-lead reveal">
-          Maison Liora יוצרת תכשיטי יוקרה לרגעים שאי אפשר לשכוח: יהלומים שנבחרים ביד,
-          זהב חם ונקי, ועבודת אטלייה אישית שמרגישה כמו חוויה פרטית.
+          Maya Geller Jewelry הוא סטודיו בוטיק בתל אביב לתכשיטי זהב בעבודת יד:
+          טבעות אירוסין, טבעות מינימליסטיות, שרשראות ועגילים בקווים שקטים ונקיים.
         </p>
       </section>
 
@@ -85,19 +87,19 @@
           <h2>ארבע קולקציות מרכזיות, כל אחת מספרת סיפור אחר של אלגנטיות.</h2>
         </div>
         <div class="collection-grid">
-          <a class="collection-card reveal" href="product.html" aria-label="קולקציית טבעות אירוסין">
+          <a class="collection-card reveal" href="collection.html?collection=engagement" aria-label="קולקציית טבעות אירוסין">
             <img
               src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1200&q=90"
-              alt="טבעת אירוסין יהלום בתאורת יוקרה כהה"
+              alt="טבעת אירוסין יהלום בתאורה כהה"
               loading="lazy"
             />
             <div>
               <span>01</span>
               <h3>טבעות אירוסין</h3>
-              <p>טבעות מרכזיות, הילות יהלומים ושיבוצי צד בעיצוב שנועד לרגע ההצעה.</p>
+              <p>טבעות יהלום עדינות בזהב 14K, בעיצוב אישי ושקט לרגע ההצעה.</p>
             </div>
           </a>
-          <a class="collection-card reveal" href="product.html" aria-label="קולקציית טבעות נישואין">
+          <a class="collection-card reveal" href="collection.html?collection=wedding" aria-label="קולקציית טבעות נישואין">
             <img
               src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=90"
               alt="טבעות נישואין מזהב ויהלומים"
@@ -106,13 +108,13 @@
             <div>
               <span>02</span>
               <h3>טבעות נישואין</h3>
-              <p>קווים נקיים בזהב צהוב, לבן או רוז גולד, בגימור עשיר ועדין.</p>
+              <p>קווים נקיים בזהב צהוב, לבן או רוז גולד, בגימור עדין ונוח לענידה.</p>
             </div>
           </a>
-          <a class="collection-card reveal" href="product.html" aria-label="קולקציית שרשראות">
+          <a class="collection-card reveal" href="collection.html?collection=necklaces" aria-label="קולקציית שרשראות">
             <img
               src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=90"
-              alt="שרשרת זהב יוקרתית"
+              alt="שרשרת זהב עדינה"
               loading="lazy"
             />
             <div>
@@ -121,7 +123,7 @@
               <p>שרשראות דקות, תליון יהלום ופריטים על-זמניים לענידה יומיומית.</p>
             </div>
           </a>
-          <a class="collection-card reveal" href="product.html" aria-label="קולקציית עגילים">
+          <a class="collection-card reveal" href="collection.html?collection=earrings" aria-label="קולקציית עגילים">
             <img
               src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=1200&q=90"
               alt="עגילי יהלום בתאורה אלגנטית"
@@ -130,7 +132,7 @@
             <div>
               <span>04</span>
               <h3>עגילים</h3>
-              <p>יהלומים עדינים, זהב פיסולי ופריטי ערב עם נוכחות יוקרתית.</p>
+              <p>יהלומים עדינים, זהב פיסולי ופריטי ערב עם נוכחות שקטה.</p>
             </div>
           </a>
         </div>
@@ -163,47 +165,47 @@
       <section class="products section-shell" id="products">
         <div class="section-heading reveal">
           <p class="section-kicker">פריטים נבחרים</p>
-          <h2>תכשיטים להזמנה אישית, מתנה יוקרתית או פגישה פרטית באטלייה.</h2>
+          <h2>תכשיטי זהב בעבודת יד, להזמנה אישית או לענידה יומיומית אלגנטית.</h2>
         </div>
         <div class="product-grid">
           <article class="product-card reveal">
-            <a href="product.html" class="product-image">
-              <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=900&q=90" alt="טבעת ליאורה" loading="lazy" />
+            <a href="product.html?product=tabaat-maya" class="product-image" data-product-link="tabaat-maya">
+              <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=900&q=90" alt="טבעת מאיה" loading="lazy" />
             </a>
             <div class="product-card__body">
-              <p class="product-meta">זהב לבן 18K</p>
-              <h3>טבעת ליאורה</h3>
+              <p class="product-meta">זהב לבן 14K</p>
+              <h3>טבעת מאיה</h3>
               <p>יהלום עגול מרכזי בשיבוץ ארבע שיניים נקי ואלגנטי.</p>
               <strong>החל מ-₪10,500</strong>
-              <a class="button button--small magnetic" href="https://wa.me/972501234567?text=היי,%20אשמח%20לקבל%20פרטים%20על%20טבעת%20ליאורה">להזמנה בוואטסאפ</a>
+              <a class="button button--small magnetic" href="https://wa.me/972501234567?text=היי,%20אשמח%20לקבל%20פרטים%20על%20טבעת%20מאיה" data-product-whatsapp-link="tabaat-maya">להזמנה בוואטסאפ</a>
             </div>
           </article>
           <article class="product-card reveal">
-            <a href="product.html" class="product-image">
+            <a href="product.html?product=agilei-celeste" class="product-image" data-product-link="agilei-celeste">
               <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=900&q=90" alt="עגילי יהלום סלסט" loading="lazy" />
             </a>
             <div class="product-card__body">
               <p class="product-meta">עגילי יהלום</p>
-              <h3>עגילי סלסט</h3>
+              <h3>עגילי נועה</h3>
               <p>עגילי יהלום מינימליים שנועדו לברק אלגנטי בכל יום.</p>
               <strong>החל מ-₪4,100</strong>
-              <a class="button button--small magnetic" href="product.html">פרטים נוספים</a>
+              <a class="button button--small magnetic" href="product.html?product=agilei-celeste" data-product-link="agilei-celeste">פרטים נוספים</a>
             </div>
           </article>
           <article class="product-card reveal">
-            <a href="product.html" class="product-image">
+            <a href="product.html?product=shereshet-aurora" class="product-image" data-product-link="shereshet-aurora">
               <img src="https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?auto=format&fit=crop&w=900&q=90" alt="שרשרת אורורה" loading="lazy" />
             </a>
             <div class="product-card__body">
               <p class="product-meta">שרשרת זהב</p>
-              <h3>שרשרת אורורה</h3>
+              <h3>שרשרת רומי</h3>
               <p>שרשרת זהב עדינה עם תליון יהלום בודד ונוכחות רכה.</p>
               <strong>החל מ-₪6,000</strong>
-              <a class="button button--small magnetic" href="https://wa.me/972501234567?text=היי,%20אשמח%20לקבל%20פרטים%20על%20שרשרת%20אורורה">להזמנה בוואטסאפ</a>
+              <a class="button button--small magnetic" href="https://wa.me/972501234567?text=היי,%20אשמח%20לקבל%20פרטים%20על%20שרשרת%20אורורה" data-product-whatsapp-link="shereshet-aurora">להזמנה בוואטסאפ</a>
             </div>
           </article>
           <article class="product-card reveal">
-            <a href="product.html" class="product-image">
+            <a href="product.html?product=tabaat-ella" class="product-image" data-product-link="tabaat-ella">
               <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=900&q=90" alt="טבעת נישואין זהב עדינה" loading="lazy" />
             </a>
             <div class="product-card__body">
@@ -211,11 +213,11 @@
               <h3>טבעת אלה</h3>
               <p>טבעת נישואין חלקה עם קימור עדין וגימור מבריק.</p>
               <strong>החל מ-₪2,900</strong>
-              <a class="button button--small magnetic" href="product.html">פרטים נוספים</a>
+              <a class="button button--small magnetic" href="product.html?product=tabaat-ella" data-product-link="tabaat-ella">פרטים נוספים</a>
             </div>
           </article>
           <article class="product-card reveal">
-            <a href="product.html" class="product-image">
+            <a href="product.html?product=agilei-nova" class="product-image" data-product-link="agilei-nova">
               <img src="https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&w=900&q=90" alt="עגילי זהב ויהלומים" loading="lazy" />
             </a>
             <div class="product-card__body">
@@ -223,19 +225,19 @@
               <h3>עגילי נובה</h3>
               <p>עגילי זהב ורוד עם יהלומים קטנים לניצוץ אלגנטי.</p>
               <strong>החל מ-₪3,800</strong>
-              <a class="button button--small magnetic" href="https://wa.me/972501234567?text=היי,%20אשמח%20לקבל%20פרטים%20על%20עגילי%20נובה">להזמנה בוואטסאפ</a>
+              <a class="button button--small magnetic" href="https://wa.me/972501234567?text=היי,%20אשמח%20לקבל%20פרטים%20על%20עגילי%20נובה" data-product-whatsapp-link="agilei-nova">להזמנה בוואטסאפ</a>
             </div>
           </article>
           <article class="product-card reveal">
-            <a href="product.html" class="product-image">
-              <img src="https://images.unsplash.com/photo-1600721391776-b5cd0e0048f9?auto=format&fit=crop&w=900&q=90" alt="שרשרת יהלום יוקרתית" loading="lazy" />
+            <a href="product.html?product=talion-luna" class="product-image" data-product-link="talion-luna">
+              <img src="https://images.unsplash.com/photo-1600721391776-b5cd0e0048f9?auto=format&fit=crop&w=900&q=90" alt="שרשרת יהלום עדינה" loading="lazy" />
             </a>
             <div class="product-card__body">
-              <p class="product-meta">זהב לבן ויהלום</p>
-              <h3>תליון לונה</h3>
+              <p class="product-meta">זהב לבן 14K ויהלום</p>
+              <h3>תליון שחר</h3>
               <p>תליון יהלום יחיד על שרשרת דקה למראה נקי ועל-זמני.</p>
               <strong>החל מ-₪5,400</strong>
-              <a class="button button--small magnetic" href="product.html">פרטים נוספים</a>
+              <a class="button button--small magnetic" href="product.html?product=talion-luna" data-product-link="talion-luna">פרטים נוספים</a>
             </div>
           </article>
         </div>
@@ -244,34 +246,34 @@
       <section class="story section-shell" id="story">
         <div class="story-copy reveal">
           <p class="section-kicker">סיפור המותג</p>
-          <h2>עבודת יד בתל אביב. עיצוב שנשאר אלגנטי תמיד.</h2>
+          <h2>תכשיטים בעבודת יד בישראל, בעיצוב מינימליסטי ונצחי.</h2>
           <p>
-            Maison Liora נולדה עבור לקוחות שרוצים תכשיט אישי, מדויק ויוקרתי בלי רעש מיותר.
-            כל פריט מתחיל בפרופורציה, איפוק והבנה של האופן שבו אור נע על זהב ויהלום.
+            Maya Geller Jewelry נולדה מתוך אהבה לפריטים קטנים שמלווים רגעים גדולים בשקט.
+            הסטודיו פונה לנשים שמחפשות תכשיטים נקיים, איכותיים ואישיים, בלי עודף רעש.
           </p>
           <p>
-            באטלייה שלנו עובדים עם זהב 14K ו-18K, יהלומים שנבחרים בקפידה ושיבוצים מדויקים
-            שמחזיקים כל אבן באיזון ובניקיון. התוצאה נראית מאופקת מרחוק ומרהיבה מקרוב.
+            בסטודיו קטן בתל אביב כל פריט מיוצר בקפידה בזהב 14K ובאיכות גבוהה:
+            טבעות אירוסין, שרשראות, עגילים וטבעות מינימליסטיות שנועדו לענידה יומיומית.
           </p>
           <p>
-            מטבעות אירוסין ועד שרשראות שנשארות לדורות, כל תכשיט של Maison Liora נבנה מתוך
-            אומנות, חומרי גלם איכותיים וחוויית לקוח אישית.
+            אפשר להזמין פריטים קיימים או ליצור תכשיט בהתאמה אישית. התהליך רגוע, אישי
+            ומדויק, מתוך מחשבה על הפרטים הקטנים ועל התחושה של התכשיט על הגוף.
           </p>
           <p>
-            אלו תכשיטים בעבודת יד בישראל, בעיצוב נצחי ואלגנטי. כל פריט מיוצר בקפידה,
-            נבדק מקרוב ונארז כחלק מטקס קטן של יוקרה.
+            התוצאה היא תכשיטים המיוצרים בקפידה בסטודיו קטן: אלגנטיים, פשוטים ונשארים
+            רלוונטיים הרבה אחרי הרגע שבו קיבלת אותם.
           </p>
           <a class="button button--ghost magnetic" href="customize.html">עיצוב טבעת בתלת מימד</a>
         </div>
         <div class="story-media reveal">
           <img
             src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1200&q=90"
-            alt="עבודת צורפות באטלייה"
+            alt="עבודת צורפות בסטודיו"
             loading="lazy"
           />
           <div class="story-note">
-            <span>סטנדרט אטלייה</span>
-            <strong>גימור ידני, בדיקה אישית ואריזת יוקרה לכל פריט.</strong>
+            <span>סטנדרט סטודיו</span>
+            <strong>גימור ידני, בדיקה אישית ואריזה נקייה לכל פריט.</strong>
           </div>
         </div>
       </section>
@@ -281,17 +283,17 @@
           <article class="value-card reveal">
             <i data-lucide="gem" aria-hidden="true"></i>
             <h3>תכשיטים בעבודת יד</h3>
-            <p>כל קו, שיבוץ וגימור מקבלים תשומת לב של אטלייה יוקרתי.</p>
+            <p>כל קו, שיבוץ וגימור מקבלים תשומת לב של סטודיו קטן ומוקפד.</p>
           </article>
           <article class="value-card reveal">
             <i data-lucide="badge-check" aria-hidden="true"></i>
             <h3>חומרים מוסמכים</h3>
-            <p>זהב, יהלומים ואבני חן נבחרים לפי סטנדרטים שקופים ואיכותיים.</p>
+            <p>זהב 14K, יהלומים וחומרי גלם נבחרים לפי סטנדרטים שקופים ואיכותיים.</p>
           </article>
           <article class="value-card reveal">
             <i data-lucide="package-check" aria-hidden="true"></i>
-            <h3>אריזת יוקרה כלולה</h3>
-            <p>קופסת Maison Liora יוקרתית, מתאימה למתנה או לרגע אישי במיוחד.</p>
+            <h3>אריזה אלגנטית כלולה</h3>
+            <p>אריזה נקייה ומוקפדת, מתאימה למתנה או לרגע אישי במיוחד.</p>
           </article>
           <article class="value-card reveal">
             <i data-lucide="message-circle" aria-hidden="true"></i>
@@ -309,7 +311,7 @@
             ספרו לנו על האירוע, גוון הזהב המועדף והתקציב. נלווה אתכם בבחירת היהלום,
             השיבוץ והגימור הנכון עד לפריט שמרגיש מדויק.
           </p>
-          <a class="button button--primary magnetic" href="https://wa.me/972501234567?text=היי,%20אשמח%20לקבוע%20ייעוץ%20פרטי%20ב-Maison%20Liora">קביעת ייעוץ אישי</a>
+          <a class="button button--primary magnetic" href="https://wa.me/972501234567?text=היי,%20אשמח%20לקבוע%20ייעוץ%20אישי%20עם%20Maya%20Geller%20Jewelry">קביעת ייעוץ אישי</a>
         </div>
       </section>
 
@@ -337,7 +339,7 @@
       </section>
     </main>
 
-    <a class="whatsapp-float magnetic" href="https://wa.me/972501234567?text=היי,%20אשמח%20לקבל%20פרטים%20על%20Maison%20Liora" aria-label="הזמנה בוואטסאפ">
+    <a class="whatsapp-float magnetic" href="https://wa.me/972501234567?text=היי,%20אשמח%20לקבל%20פרטים%20על%20Maya%20Geller%20Jewelry" aria-label="הזמנה בוואטסאפ">
       <i data-lucide="message-circle"></i>
     </a>
 
@@ -345,10 +347,10 @@
       <div class="footer__top"></div>
       <div>
         <a class="brand" href="#top">
-          <span class="brand__mark">ML</span>
-          <span>Maison Liora</span>
+          <span class="brand__mark">MG</span>
+          <span>Maya Geller Jewelry</span>
         </a>
-        <p>תכשיטי יוקרה, טבעות אירוסין ופריטים בהתאמה אישית בעבודת יד בתל אביב.</p>
+        <p>תכשיטי זהב 14K בעבודת יד בתל אביב: טבעות אירוסין, שרשראות, עגילים והזמנות אישיות.</p>
       </div>
       <div class="footer__links" aria-label="קישורי פוטר">
         <a href="#collections">קולקציות</a>

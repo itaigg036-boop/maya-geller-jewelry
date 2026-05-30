@@ -1,4 +1,4 @@
-const totalFrames = 240;
+﻿const totalFrames = 240;
 const framePath = (index) => `frames/frame_${String(index + 1).padStart(4, "0")}.jpg`;
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -15,9 +15,9 @@ const frameLead = document.getElementById("frameLead");
 const frameStory = [
   {
     start: 0,
-    kicker: "בית תכשיטי יוקרה",
-    title: "Maison Liora",
-    lead: "תכשיטים על-זמניים שנוצרים באלגנטיות"
+    kicker: "סטודיו תכשיטים בתל אביב",
+    title: "Maya Geller Jewelry",
+    lead: "תכשיטי זהב בעבודת יד בתל אביב"
   },
   {
     start: 42,
@@ -27,20 +27,20 @@ const frameStory = [
   },
   {
     start: 92,
-    kicker: "אטלייה זהב",
-    title: "זהב שמעוצב באיפוק.",
-    lead: "זהב 14K ו-18K מקבל גימור ידני נקי, עשיר ומעודן."
+    kicker: "זהב 14K",
+    title: "זהב שמעוצב בשקט.",
+    lead: "כל פריט מיוצר בזהב 14K ובאיכות גבוהה, בגימור ידני נקי ומדויק."
   },
   {
     start: 145,
     kicker: "עיצוב אישי",
     title: "תכשיט שנבנה סביב הסיפור שלך.",
-    lead: "מטבעת אירוסין ועד מתנה יוקרתית, כל פרט ניתן להתאמה בפגישה פרטית."
+    lead: "מטבעת אירוסין ועד מתנה אישית, כל פרט ניתן להתאמה בפגישה פרטית."
   },
   {
     start: 198,
     kicker: "חתימת המותג",
-    title: "יוקרה שנועדה לענידה.",
+    title: "שקט שנועד לענידה.",
     lead: "תכשיטים שמרגישים אלגנטיים ברגע הראשון ונשארים נכונים גם שנים קדימה."
   }
 ];
@@ -585,7 +585,7 @@ function setupContactForm() {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     if (status) {
-      status.textContent = "תודה, Maison Liora תחזור אליך בהקדם.";
+      status.textContent = "תודה, Maya Geller Jewelry תחזור אליך בהקדם.";
     }
     form.reset();
   });

@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="קולקציות Maya Geller Jewelry - טבעות אירוסין, טבעות מינימליסטיות, שרשראות ועגילים בעבודת יד בתל אביב."
+    />
+    <title>Maya Geller Jewelry | קולקציה</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+    <script src="shop-data.js" defer></script>
+    <script src="shop.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body class="product-page">
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="luxury-spotlight" aria-hidden="true"></div>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+    <nav class="navbar" aria-label="ניווט ראשי">
+      <a class="brand magnetic" href="index.html" aria-label="Maya Geller Jewelry - חזרה לעמוד הבית">
+        <span class="brand__mark">MG</span>
+        <span>Maya Geller Jewelry</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#top">בית</a>
+        <a href="index.html#collections">קולקציות</a>
+        <a href="index.html#products">פריטים</a>
+        <a href="index.html#story">אודות</a>
+        <a href="index.html#contact">יצירת קשר</a>
+      </div>
+      <a class="nav-cta magnetic" href="https://wa.me/972501234567?text=היי,%20אשמח%20לקבל%20ייעוץ%20על%20קולקציה">קביעת ייעוץ אישי</a>
+    </nav>
+
+    <main data-collection-page>
+      <section class="collection-hero section-shell">
+        <div class="collection-hero__copy reveal">
+          <nav class="breadcrumbs" aria-label="פירורי לחם">
+            <a href="index.html">בית</a>
+            <span>/</span>
+            <span>קולקציה</span>
+          </nav>
+          <p class="section-kicker" data-collection-kicker>קולקציה</p>
+          <h1 data-collection-title>טבעות אירוסין</h1>
+          <p data-collection-description>
+            תכשיטים בעבודת יד בישראל, עם חומרים מוסמכים וייעוץ אישי לכל פריט.
+          </p>
+          <span class="collection-count" data-collection-count>0 פריטים בקולקציה</span>
+        </div>
+        <div class="collection-hero__image reveal">
+          <img data-collection-image src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1400&q=92" alt="קולקציית תכשיטי זהב" />
+        </div>
+      </section>
+
+      <section class="section-shell">
+        <div class="section-heading reveal">
+          <p class="section-kicker">פריטי הקולקציה</p>
+          <h2>בחרו פריט, עברו לעמוד מוצר, ומשם המשיכו להזמנה או ייעוץ בוואטסאפ.</h2>
+        </div>
+        <div class="product-grid" data-collection-products></div>
+      </section>
+    </main>
+
+    <a class="whatsapp-float magnetic" href="https://wa.me/972501234567?text=היי,%20אשמח%20לקבל%20ייעוץ%20על%20קולקציה" aria-label="ייעוץ בוואטסאפ">
+      <i data-lucide="message-circle"></i>
+    </a>
+
+    <footer class="footer">
+      <div class="footer__top"></div>
+      <div>
+        <a class="brand" href="index.html">
+          <span class="brand__mark">MG</span>
+          <span>Maya Geller Jewelry</span>
+        </a>
+        <p>תכשיטי זהב 14K בעבודת יד בתל אביב: טבעות אירוסין, שרשראות, עגילים והזמנות אישיות.</p>
+      </div>
+      <div class="footer__links" aria-label="קישורי פוטר">
+        <a href="index.html#collections">קולקציות</a>
+        <a href="index.html#products">פריטים</a>
+        <a href="index.html#story">אודות</a>
+        <a href="index.html#contact">יצירת קשר</a>
+      </div>
+      <div class="socials">
+        <a href="#" aria-label="אינסטגרם"><i data-lucide="instagram"></i></a>
+        <a href="#" aria-label="פינטרסט"><i data-lucide="badge"></i></a>
+        <a href="#" aria-label="וואטסאפ"><i data-lucide="message-circle"></i></a>
+      </div>
+    </footer>
+  </body>
+</html>
