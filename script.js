@@ -1,14 +1,10 @@
-/* Frame sequence configuration.
-   The provided images live in /frames/ as frame_0001.jpg ... frame_0240.jpg. */
 const totalFrames = 240;
 const framePath = (index) => `frames/frame_${String(index + 1).padStart(4, "0")}.jpg`;
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const isMobile = window.matchMedia("(max-width: 680px)").matches;
-const frameIndexes = Array.from({ length: totalFrames }, (_, index) => index);
-
 const canvas = document.getElementById("heroCanvas");
-const ctx = canvas.getContext("2d", { alpha: false });
+const ctx = canvas?.getContext("2d", { alpha: false });
 const frameSection = document.getElementById("frameSection");
 const scrollProgress = document.querySelector(".scroll-progress span");
 const frameCopy = document.getElementById("frameCopy");
@@ -19,40 +15,39 @@ const frameLead = document.getElementById("frameLead");
 const frameStory = [
   {
     start: 0,
-    kicker: "Maison Liora",
-    title: "יהלום שנולד לאור.",
-    lead: "גללי לאט וראי איך כל ניצוץ, כל קימור וכל פרט בתכשיט מתגלה כמו רגע נדיר."
+    kicker: "בית תכשיטי יוקרה",
+    title: "Maison Liora",
+    lead: "תכשיטים על-זמניים שנוצרים באלגנטיות"
   },
   {
     start: 42,
-    kicker: "חומרי גלם",
-    title: "זהב 18 קראט. ברק שנשאר.",
-    lead: "הבסיס לכל תכשיט הוא חומר נקי, עשיר ומאוזן, כזה שמרגיש יוקרתי עוד לפני השיבוץ."
+    kicker: "יהלומים נבחרים",
+    title: "אור, חיתוך וברק שקט.",
+    lead: "כל אבן נבחרת לפי נוכחות, פרופורציה והאופן שבו היא מחזירה אור בתנועה."
   },
   {
     start: 92,
-    kicker: "שיבוץ מדויק",
-    title: "כל אבן מקבלת במה.",
-    lead: "יהלומים ואבני חן נבחרים לפי אור, חיתוך ונוכחות, ואז משובצים ביד לתוצאה נקייה ומדויקת."
+    kicker: "אטלייה זהב",
+    title: "זהב שמעוצב באיפוק.",
+    lead: "זהב 14K ו-18K מקבל גימור ידני נקי, עשיר ומעודן."
   },
   {
     start: 145,
-    kicker: "קולקציית Signature",
-    title: "תכשיטים לערב, ליום ולרגע שלא חוזר.",
-    lead: "טבעות, שרשראות ועגילים שמחברים בין מינימליזם מודרני לבין דרמה אלגנטית."
+    kicker: "עיצוב אישי",
+    title: "תכשיט שנבנה סביב הסיפור שלך.",
+    lead: "מטבעת אירוסין ועד מתנה יוקרתית, כל פרט ניתן להתאמה בפגישה פרטית."
   },
   {
     start: 198,
-    kicker: "התאמה אישית",
-    title: "הפריט הבא שלך מתחיל בשיחה.",
-    lead: "בחרי מידה, זהב, אבן וחריטה, ואנחנו נהפוך את הסיפור שלך לתכשיט חד פעמי."
+    kicker: "Maison Signature",
+    title: "יוקרה שנועדה לענידה.",
+    lead: "תכשיטים שמרגישים אלגנטיים ברגע הראשון ונשארים נכונים גם שנים קדימה."
   }
 ];
 
 let images = new Array(totalFrames);
 let frameRequests = new Map();
 let loadedFrameCount = 0;
-let allFramesReady = false;
 let currentFrame = 0;
 let targetFrame = 0;
 let activeStoryIndex = 0;
@@ -61,13 +56,23 @@ let canvasHeight = 0;
 let canvasScale = 1;
 let lenis;
 
+function hasFrameExperience() {
+  return Boolean(canvas && ctx && frameSection);
+}
+
 function startFrameLoading() {
-  frameIndexes.forEach((index) => {
+  if (!hasFrameExperience()) return;
+
+  Array.from({ length: totalFrames }, (_, index) => index).forEach((index) => {
     loadFrame(index);
   });
 }
 
 function loadFrame(index) {
+  if (!hasFrameExperience()) {
+    return Promise.resolve(null);
+  }
+
   if (images[index]) {
     return Promise.resolve(images[index]);
   }
@@ -85,9 +90,8 @@ function loadFrame(index) {
       images[index] = image;
       frameRequests.delete(index);
       loadedFrameCount += 1;
-      allFramesReady = loadedFrameCount === totalFrames;
 
-      if (index === 0 || index === targetFrame || allFramesReady) {
+      if (index === 0 || index === targetFrame || loadedFrameCount === totalFrames) {
         renderFrame(targetFrame);
       }
 
@@ -95,7 +99,6 @@ function loadFrame(index) {
     };
     image.onerror = () => {
       frameRequests.delete(index);
-      console.warn(`Frame failed to load: ${framePath(index)}`);
       resolve(null);
     };
     image.src = framePath(index);
@@ -106,6 +109,8 @@ function loadFrame(index) {
 }
 
 function resizeCanvas() {
+  if (!hasFrameExperience()) return;
+
   canvasWidth = window.innerWidth;
   canvasHeight = window.innerHeight;
   canvasScale = getCanvasScale();
@@ -121,15 +126,14 @@ function resizeCanvas() {
 
 function getCanvasScale() {
   const deviceScale = window.devicePixelRatio || 1;
-  const fourKScale = Math.max(1, 3840 / Math.max(window.innerWidth, 1));
-  const desiredScale = Math.max(deviceScale, fourKScale);
-  const maxScale = isMobile ? 2 : 2.5;
-
-  return Math.min(desiredScale, maxScale);
+  const premiumScale = Math.max(1, 2560 / Math.max(window.innerWidth, 1));
+  const desiredScale = Math.max(deviceScale, premiumScale);
+  return Math.min(desiredScale, isMobile ? 2 : 2.35);
 }
 
-// Draw with "cover" behavior so every frame fills the viewport like a hero video.
 function renderFrame(index) {
+  if (!hasFrameExperience()) return;
+
   const image = findBestFrame(index);
   if (!image) return;
 
@@ -151,27 +155,25 @@ function renderFrame(index) {
   }
 
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-  ctx.filter = "contrast(1.07) saturate(1.14) brightness(1.03)";
+  ctx.filter = "contrast(1.08) saturate(0.92) brightness(0.88)";
   ctx.drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
   ctx.filter = "none";
-  addPremiumImageFinish();
+  addCinematicFinish();
 }
 
-function addPremiumImageFinish() {
+function addCinematicFinish() {
   const gradient = ctx.createRadialGradient(
-    canvasWidth * 0.5,
-    canvasHeight * 0.45,
+    canvasWidth * 0.52,
+    canvasHeight * 0.42,
     canvasWidth * 0.18,
     canvasWidth * 0.5,
     canvasHeight * 0.5,
-    canvasWidth * 0.82
+    canvasWidth * 0.84
   );
 
-  gradient.addColorStop(0, "rgba(255, 255, 255, 0.025)");
-  gradient.addColorStop(0.62, "rgba(0, 0, 0, 0)");
-  gradient.addColorStop(1, "rgba(0, 0, 0, 0.32)");
-
-  ctx.globalCompositeOperation = "source-over";
+  gradient.addColorStop(0, "rgba(245, 241, 234, 0.025)");
+  gradient.addColorStop(0.58, "rgba(0, 0, 0, 0)");
+  gradient.addColorStop(1, "rgba(0, 0, 0, 0.44)");
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 }
@@ -182,7 +184,6 @@ function findBestFrame(index) {
   for (let distance = 1; distance < totalFrames; distance += 1) {
     const previous = index - distance;
     const next = index + distance;
-
     if (previous >= 0 && images[previous]) return images[previous];
     if (next < totalFrames && images[next]) return images[next];
   }
@@ -191,6 +192,8 @@ function findBestFrame(index) {
 }
 
 function updateFrameFromScroll() {
+  if (!hasFrameExperience()) return;
+
   const rect = frameSection.getBoundingClientRect();
   const sectionHeight = frameSection.offsetHeight;
   const windowHeight = window.innerHeight;
@@ -199,10 +202,13 @@ function updateFrameFromScroll() {
   const scrollFraction = scrollY / scrollableDistance;
   targetFrame = Math.min(totalFrames - 1, Math.round(scrollFraction * (totalFrames - 1)));
   loadFrame(targetFrame);
+  requestFramesAround(targetFrame);
   updateFrameStory(targetFrame);
 }
 
 function updateFrameStory(frameIndex) {
+  if (!frameCopy || !frameKicker || !frameTitle || !frameLead) return;
+
   const nextStoryIndex = frameStory.reduce((activeIndex, story, index) => {
     return frameIndex >= story.start ? index : activeIndex;
   }, 0);
@@ -211,14 +217,25 @@ function updateFrameStory(frameIndex) {
 
   activeStoryIndex = nextStoryIndex;
   const story = frameStory[activeStoryIndex];
-
   frameCopy.classList.add("is-changing");
   window.setTimeout(() => {
     frameKicker.textContent = story.kicker;
     frameTitle.textContent = story.title;
     frameLead.textContent = story.lead;
     frameCopy.classList.remove("is-changing");
-  }, 180);
+  }, 190);
+}
+
+function requestFramesAround(index) {
+  if (!hasFrameExperience()) return;
+
+  const preloadRadius = isMobile ? 10 : 18;
+  for (let offset = 0; offset <= preloadRadius; offset += 1) {
+    const previous = index - offset;
+    const next = index + offset;
+    if (previous >= 0 && !images[previous]) loadFrame(previous);
+    if (next < totalFrames && !images[next]) loadFrame(next);
+  }
 }
 
 function animationLoop(time) {
@@ -226,32 +243,22 @@ function animationLoop(time) {
     lenis.raf(time);
   }
 
-  if (!prefersReducedMotion) {
+  if (hasFrameExperience() && !prefersReducedMotion) {
     updateFrameFromScroll();
   }
 
-  if (targetFrame !== currentFrame) {
+  if (hasFrameExperience() && targetFrame !== currentFrame) {
     currentFrame = targetFrame;
     renderFrame(currentFrame);
   }
 
   updateScrollProgress();
-
   requestAnimationFrame(animationLoop);
 }
 
-function requestFramesAround(index) {
-  const preloadRadius = isMobile ? 12 : 20;
-  for (let offset = 0; offset <= preloadRadius; offset += 1) {
-    const previous = index - offset;
-    const next = index + offset;
-
-    if (previous >= 0 && !images[previous]) loadFrame(previous);
-    if (next < totalFrames && !images[next]) loadFrame(next);
-  }
-}
-
 function updateScrollProgress() {
+  if (!scrollProgress) return;
+
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
   const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
   scrollProgress.style.width = `${Math.min(progress * 100, 100)}%`;
@@ -261,16 +268,21 @@ function setupLenis() {
   if (prefersReducedMotion || !window.Lenis) return;
 
   lenis = new Lenis({
-    duration: 0.72,
+    duration: 0.78,
     easing: (t) => 1 - Math.pow(1 - t, 4),
     smoothWheel: true,
-    wheelMultiplier: 1.15,
-    touchMultiplier: 1.2
+    wheelMultiplier: 1.05,
+    touchMultiplier: 1.15
   });
 }
 
 function setupRevealAnimations() {
-  const revealItems = document.querySelectorAll(".reveal, .feature-card, .project-card, .quote-card, .stat");
+  const revealItems = document.querySelectorAll(
+    ".reveal, .collection-card, .product-card, .value-card, .story-media, .quote-card, .stat"
+  );
+
+  if (!revealItems.length) return;
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -280,7 +292,7 @@ function setupRevealAnimations() {
         }
       });
     },
-    { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+    { threshold: 0.14, rootMargin: "0px 0px -8% 0px" }
   );
 
   revealItems.forEach((item) => observer.observe(item));
@@ -295,16 +307,18 @@ function setupSplitText() {
       const span = document.createElement("span");
       span.className = "word";
       span.textContent = `${word} `;
-      span.style.transitionDelay = `${Math.min(index * 55, 650)}ms`;
+      span.style.transitionDelay = `${Math.min(index * 55, 700)}ms`;
       title.appendChild(span);
     });
 
-    title.classList.add("is-visible");
+    window.setTimeout(() => title.classList.add("is-visible"), 180);
   });
 }
 
 function setupCounters() {
   const counters = document.querySelectorAll("[data-count]");
+  if (!counters.length) return;
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -319,10 +333,7 @@ function setupCounters() {
           const progress = Math.min((now - start) / duration, 1);
           const eased = 1 - Math.pow(1 - progress, 3);
           counter.textContent = Math.round(target * eased).toLocaleString("he-IL");
-
-          if (progress < 1) {
-            requestAnimationFrame(tick);
-          }
+          if (progress < 1) requestAnimationFrame(tick);
         }
 
         requestAnimationFrame(tick);
@@ -350,12 +361,8 @@ function setupFeaturePresenter() {
     const icon = card.querySelector("svg")?.cloneNode(true);
     const title = card.querySelector("h3")?.textContent || "";
     const text = card.dataset.expanded || card.querySelector("p")?.textContent || "";
-
     iconTarget.replaceChildren();
-    if (icon) {
-      iconTarget.appendChild(icon);
-    }
-
+    if (icon) iconTarget.appendChild(icon);
     titleTarget.textContent = title;
     textTarget.textContent = text;
     presenter.classList.add("is-open");
@@ -378,12 +385,10 @@ function setupFeaturePresenter() {
     });
   });
 
-  backdrop.addEventListener("click", closePresenter);
-  closeButton.addEventListener("click", closePresenter);
+  backdrop?.addEventListener("click", closePresenter);
+  closeButton?.addEventListener("click", closePresenter);
   window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && presenter.classList.contains("is-open")) {
-      closePresenter();
-    }
+    if (event.key === "Escape" && presenter.classList.contains("is-open")) closePresenter();
   });
 }
 
@@ -392,6 +397,8 @@ function setupCustomCursor() {
 
   const dot = document.querySelector(".cursor-dot");
   const ring = document.querySelector(".cursor-ring");
+  if (!dot || !ring) return;
+
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
   let ringX = mouseX;
@@ -404,7 +411,7 @@ function setupCustomCursor() {
     dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
 
     const now = performance.now();
-    if (now - lastSpark > 42) {
+    if (now - lastSpark > 54) {
       createCursorSpark(mouseX, mouseY);
       lastSpark = now;
     }
@@ -417,7 +424,7 @@ function setupCustomCursor() {
     requestAnimationFrame(trail);
   }
 
-  document.querySelectorAll("a, button, .project-card").forEach((item) => {
+  document.querySelectorAll("a, button, .collection-card, .product-card").forEach((item) => {
     item.addEventListener("mouseenter", () => ring.classList.add("is-active"));
     item.addEventListener("mouseleave", () => ring.classList.remove("is-active"));
   });
@@ -425,67 +432,10 @@ function setupCustomCursor() {
   trail();
 }
 
-function setupLuxuryInteractions() {
-  if (prefersReducedMotion) return;
-
-  const navbar = document.querySelector(".navbar");
-  const navLinks = document.querySelectorAll(".nav-links a[href^='#']");
-  const interactiveGlowItems = document.querySelectorAll(".feature-card, .quote-card, .stat");
-  const tiltCards = document.querySelectorAll(".project-card");
-
-  window.addEventListener(
-    "pointermove",
-    (event) => {
-      document.body.style.setProperty("--spotlight-x", `${event.clientX}px`);
-      document.body.style.setProperty("--spotlight-y", `${event.clientY}px`);
-    },
-    { passive: true }
-  );
-
-  interactiveGlowItems.forEach((item) => {
-    item.addEventListener("pointermove", (event) => {
-      const rect = item.getBoundingClientRect();
-      const x = ((event.clientX - rect.left) / rect.width) * 100;
-      const y = ((event.clientY - rect.top) / rect.height) * 100;
-      item.style.setProperty("--card-x", `${x}%`);
-      item.style.setProperty("--card-y", `${y}%`);
-    });
-  });
-
-  tiltCards.forEach((card) => {
-    card.addEventListener("pointermove", (event) => {
-      const rect = card.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - 0.5;
-      const y = (event.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `perspective(900px) rotateY(${x * -8}deg) rotateX(${y * 7}deg) translateY(-6px)`;
-    });
-
-    card.addEventListener("pointerleave", () => {
-      card.style.transform = "";
-    });
-  });
-
-  function updateNavState() {
-    navbar?.classList.toggle("is-scrolled", window.scrollY > 24);
-
-    navLinks.forEach((link) => {
-      const target = document.querySelector(link.getAttribute("href"));
-      if (!target) return;
-
-      const rect = target.getBoundingClientRect();
-      const isActive = rect.top < window.innerHeight * 0.42 && rect.bottom > window.innerHeight * 0.34;
-      link.classList.toggle("is-active", isActive);
-    });
-  }
-
-  window.addEventListener("scroll", updateNavState, { passive: true });
-  updateNavState();
-}
-
 function createCursorSpark(x, y) {
   const spark = document.createElement("span");
-  const driftX = `${(Math.random() - 0.5) * 58}px`;
-  const driftY = `${(Math.random() - 0.5) * 58}px`;
+  const driftX = `${(Math.random() - 0.5) * 54}px`;
+  const driftY = `${(Math.random() - 0.5) * 54}px`;
 
   spark.className = "cursor-spark";
   spark.style.left = `${x}px`;
@@ -496,6 +446,51 @@ function createCursorSpark(x, y) {
   window.setTimeout(() => spark.remove(), 700);
 }
 
+function setupLuxuryInteractions() {
+  const navbar = document.querySelector(".navbar");
+  const navLinks = document.querySelectorAll(".nav-links a[href^='#']");
+  const tiltCards = document.querySelectorAll(".collection-card, .product-card");
+
+  if (!prefersReducedMotion) {
+    window.addEventListener(
+      "pointermove",
+      (event) => {
+        document.body.style.setProperty("--spotlight-x", `${event.clientX}px`);
+        document.body.style.setProperty("--spotlight-y", `${event.clientY}px`);
+      },
+      { passive: true }
+    );
+
+    tiltCards.forEach((card) => {
+      card.addEventListener("pointermove", (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `perspective(1000px) rotateY(${x * -4}deg) rotateX(${y * 3}deg) translateY(-8px)`;
+      });
+
+      card.addEventListener("pointerleave", () => {
+        card.style.transform = "";
+      });
+    });
+  }
+
+  function updateNavState() {
+    navbar?.classList.toggle("is-scrolled", window.scrollY > 24);
+
+    navLinks.forEach((link) => {
+      const target = document.querySelector(link.getAttribute("href"));
+      if (!target) return;
+      const rect = target.getBoundingClientRect();
+      const isActive = rect.top < window.innerHeight * 0.42 && rect.bottom > window.innerHeight * 0.34;
+      link.classList.toggle("is-active", isActive);
+    });
+  }
+
+  window.addEventListener("scroll", updateNavState, { passive: true });
+  updateNavState();
+}
+
 function setupMagneticButtons() {
   if (isMobile || prefersReducedMotion) return;
 
@@ -504,7 +499,7 @@ function setupMagneticButtons() {
       const rect = item.getBoundingClientRect();
       const x = event.clientX - rect.left - rect.width / 2;
       const y = event.clientY - rect.top - rect.height / 2;
-      item.style.transform = `translate(${x * 0.18}px, ${y * 0.18}px)`;
+      item.style.transform = `translate(${x * 0.14}px, ${y * 0.14}px)`;
     });
 
     item.addEventListener("mouseleave", () => {
@@ -516,15 +511,15 @@ function setupMagneticButtons() {
 function setupGalleryFilters() {
   const tags = document.querySelectorAll(".tag");
   const cards = document.querySelectorAll(".project-card");
+  if (!tags.length || !cards.length) return;
 
   tags.forEach((tag) => {
     tag.addEventListener("click", () => {
       tags.forEach((item) => item.classList.remove("is-active"));
       tag.classList.add("is-active");
-
       const selected = tag.textContent.trim();
       cards.forEach((card) => {
-        const shouldShow = selected === "הכל" || card.dataset.category === selected;
+        const shouldShow = selected === "All" || card.dataset.category === selected;
         card.classList.toggle("is-hidden", !shouldShow);
       });
     });
@@ -534,19 +529,66 @@ function setupGalleryFilters() {
 function setupParallax() {
   if (prefersReducedMotion) return;
 
-  const parallaxItems = document.querySelectorAll(".ambient, .particles");
+  const parallaxItems = document.querySelectorAll(".hero-orb, .story-media");
+  if (!parallaxItems.length) return;
 
   window.addEventListener(
     "scroll",
     () => {
       const y = window.scrollY;
       parallaxItems.forEach((item, index) => {
-        const speed = index % 2 === 0 ? 0.045 : -0.035;
-        item.style.transform = `translate3d(0, ${y * speed}px, 0)`;
+        const speed = index % 2 === 0 ? 0.026 : -0.018;
+        item.style.setProperty("--parallax-y", `${y * speed}px`);
       });
     },
     { passive: true }
   );
+}
+
+function setupProductGallery() {
+  const mainImage = document.querySelector(".product-main-image");
+  const thumbs = Array.from(document.querySelectorAll(".gallery-thumb"));
+  const prevButton = document.querySelector("[data-gallery-prev]");
+  const nextButton = document.querySelector("[data-gallery-next]");
+  if (!mainImage || !thumbs.length) return;
+
+  let activeIndex = thumbs.findIndex((thumb) => thumb.classList.contains("is-active"));
+  if (activeIndex < 0) activeIndex = 0;
+
+  function setActive(index) {
+    activeIndex = (index + thumbs.length) % thumbs.length;
+    const thumb = thumbs[activeIndex];
+    const image = thumb.querySelector("img");
+    mainImage.style.opacity = "0";
+    window.setTimeout(() => {
+      mainImage.src = image.src;
+      mainImage.alt = image.alt;
+      mainImage.style.opacity = "1";
+    }, 160);
+    thumbs.forEach((item) => item.classList.remove("is-active"));
+    thumb.classList.add("is-active");
+  }
+
+  thumbs.forEach((thumb, index) => {
+    thumb.addEventListener("click", () => setActive(index));
+  });
+
+  prevButton?.addEventListener("click", () => setActive(activeIndex - 1));
+  nextButton?.addEventListener("click", () => setActive(activeIndex + 1));
+}
+
+function setupContactForm() {
+  const form = document.querySelector(".contact-form");
+  if (!form) return;
+
+  const status = form.querySelector(".form-status");
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (status) {
+      status.textContent = "תודה, Maison Liora תחזור אליך בהקדם.";
+    }
+    form.reset();
+  });
 }
 
 function setupIcons() {
@@ -567,6 +609,8 @@ setupLuxuryInteractions();
 setupMagneticButtons();
 setupGalleryFilters();
 setupParallax();
+setupProductGallery();
+setupContactForm();
 setupLenis();
 setupIcons();
 resizeCanvas();
