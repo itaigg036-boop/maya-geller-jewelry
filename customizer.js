@@ -12,12 +12,12 @@ const selectedDescription = document.getElementById("selectedDescription");
 const metalSummary = document.getElementById("metalSummary");
 
 const ringPresets = {
-  "Solitaire Royale": { build: buildSolitaireRing, cameraZ: 5.2 },
-  "Original Diamond": { original: true },
-  "Halo Lumiere": { build: buildHaloRing, cameraZ: 5.4 },
-  "Pavé Éclat": { build: buildPaveRing, cameraZ: 5.5 },
-  "Emerald Muse": { build: buildEmeraldRing, cameraZ: 5.3 },
-  "Trinity Stones": { build: buildThreeStoneRing, cameraZ: 5.8 }
+  "טבעת מרכזית מלכותית": { build: buildSolitaireRing, cameraZ: 5.2 },
+  "הטבעת המקורית": { original: true },
+  "הילה זוהרת": { build: buildHaloRing, cameraZ: 5.4 },
+  "שיבוץ צד עדין": { build: buildPaveRing, cameraZ: 5.5 },
+  "חיתוך מלבני אלגנטי": { build: buildEmeraldRing, cameraZ: 5.3 },
+  "שלוש אבנים": { build: buildThreeStoneRing, cameraZ: 5.8 }
 };
 
 let scene;
@@ -28,7 +28,7 @@ let metalMaterial;
 let gemMaterial;
 let accentMaterial;
 let selectedColor = "#ffffff";
-let activeRingType = "Solitaire Royale";
+let activeRingType = "טבעת מרכזית מלכותית";
 let originalMetalMaterials = [];
 let isOriginalMode = false;
 let targetRotationY = -0.42;

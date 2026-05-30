@@ -39,7 +39,7 @@ const frameStory = [
   },
   {
     start: 198,
-    kicker: "Maison Signature",
+    kicker: "חתימת המותג",
     title: "יוקרה שנועדה לענידה.",
     lead: "תכשיטים שמרגישים אלגנטיים ברגע הראשון ונשארים נכונים גם שנים קדימה."
   }
@@ -519,7 +519,7 @@ function setupGalleryFilters() {
       tag.classList.add("is-active");
       const selected = tag.textContent.trim();
       cards.forEach((card) => {
-        const shouldShow = selected === "All" || card.dataset.category === selected;
+        const shouldShow = selected === "הכול" || card.dataset.category === selected;
         card.classList.toggle("is-hidden", !shouldShow);
       });
     });

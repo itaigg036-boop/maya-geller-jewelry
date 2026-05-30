@@ -493,6 +493,7 @@ canvas {
 .collection-card,
 .product-card,
 .value-card,
+.flow-panel,
 .story-media,
 .consultation-panel,
 .contact-form,
@@ -586,6 +587,56 @@ canvas {
 
 .product-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.flow-panel {
+  display: grid;
+  gap: 1.35rem;
+  padding: clamp(1.3rem, 3.4vw, 2.4rem);
+  border-radius: 1.8rem;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(200, 169, 106, 0.16), transparent 24rem),
+    linear-gradient(145deg, rgba(245, 241, 234, 0.07), rgba(245, 241, 234, 0.025));
+}
+
+.flow-panel h2 {
+  max-width: 760px;
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(2.1rem, 4.2vw, 4.4rem);
+  line-height: 1;
+}
+
+.flow-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.flow-steps article {
+  min-height: 12rem;
+  padding: 1.1rem;
+  border: 1px solid rgba(245, 241, 234, 0.1);
+  border-radius: 1.2rem;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.flow-steps span {
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.flow-steps h3 {
+  margin: 0.85rem 0 0.45rem;
+  font-family: var(--serif);
+  font-size: 1.55rem;
+}
+
+.flow-steps p {
+  margin: 0;
+  color: var(--muted);
 }
 
 .product-card {
@@ -872,6 +923,7 @@ canvas {
 .collection-card,
 .product-card,
 .value-card,
+.flow-panel,
 .story-media,
 .quote-card,
 .stat {
@@ -884,6 +936,7 @@ canvas {
 .collection-card.is-visible,
 .product-card.is-visible,
 .value-card.is-visible,
+.flow-panel.is-visible,
 .story-media.is-visible,
 .quote-card.is-visible,
 .stat.is-visible {
@@ -893,9 +946,14 @@ canvas {
 
 .split-title .word {
   display: inline-block;
+  margin-inline-start: 0.16em;
   opacity: 0;
   transform: translateY(0.5em);
   transition: opacity 850ms var(--ease), transform 850ms var(--ease);
+}
+
+.split-title .word:first-child {
+  margin-inline-start: 0;
 }
 
 .split-title.is-visible .word {
@@ -1087,6 +1145,7 @@ canvas {
   }
 
   .product-grid,
+  .flow-steps,
   .story,
   .product-layout {
     grid-template-columns: 1fr;
