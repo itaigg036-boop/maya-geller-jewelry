@@ -1,0 +1,496 @@
+.customizer-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 22% 16%, rgba(248, 252, 255, 0.16), transparent 26rem),
+    radial-gradient(circle at 78% 26%, rgba(125, 249, 255, 0.12), transparent 30rem),
+    radial-gradient(circle at 50% 100%, rgba(244, 223, 178, 0.1), transparent 30rem),
+    var(--bg);
+}
+
+.customizer-shell {
+  width: min(calc(100% - 2rem), 1380px);
+  margin: 0 auto;
+  padding: 8rem 0 4rem;
+}
+
+.customizer-hero {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.78fr) minmax(360px, 1.35fr) minmax(280px, 0.82fr);
+  gap: 1rem;
+  align-items: stretch;
+  min-height: calc(100vh - 12rem);
+}
+
+.customizer-copy,
+.customizer-panel,
+.ring-studio {
+  border: 1px solid rgba(220, 242, 255, 0.14);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.085), rgba(191, 239, 255, 0.025)),
+    rgba(5, 7, 13, 0.68);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), var(--shadow-diamond);
+  backdrop-filter: blur(20px);
+}
+
+.customizer-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.2rem;
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  border-radius: 2rem;
+}
+
+.customizer-copy h1 {
+  margin: 0;
+  font-family: "Space Grotesk", Inter, sans-serif;
+  font-size: clamp(2.6rem, 5vw, 5.9rem);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.07em;
+  background: linear-gradient(105deg, #ffffff, #dff8ff 32%, #8ff7ff 52%, #f4dfb2 76%, #ffffff);
+  background-size: 180% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 34px rgba(191, 239, 255, 0.24));
+  animation: diamondTextShimmer 7200ms ease-in-out infinite alternate;
+}
+
+.customizer-copy p:not(.section-kicker),
+.panel-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.customizer-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.6rem;
+}
+
+.customizer-badges span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.58rem 0.75rem;
+  border: 1px solid rgba(220, 242, 255, 0.13);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  color: #dff8ff;
+  font-size: 0.86rem;
+}
+
+.customizer-badges svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.ring-studio {
+  position: relative;
+  overflow: hidden;
+  min-height: 34rem;
+  border-radius: 2.3rem;
+  isolation: isolate;
+}
+
+.ring-studio::marker {
+  display: none;
+}
+
+.ring-studio::before,
+.ring-studio::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  content: "";
+}
+
+.ring-studio::before {
+  background:
+    linear-gradient(122deg, transparent 0 38%, rgba(255, 255, 255, 0.16) 43%, transparent 49%),
+    linear-gradient(34deg, transparent 0 58%, rgba(125, 249, 255, 0.11) 60%, transparent 64%),
+    radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.16), transparent 30rem);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
+.ring-studio::after {
+  background:
+    radial-gradient(circle at 50% 76%, rgba(125, 249, 255, 0.18), transparent 18rem),
+    linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.34));
+}
+
+.ring-studio .ring-viewer::before {
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  z-index: -1;
+  width: min(18rem, 55vw);
+  aspect-ratio: 1;
+  border: 1px solid rgba(191, 239, 255, 0.22);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 24%, rgba(255, 255, 255, 0.42), transparent 0.55rem),
+    radial-gradient(circle at 50% 24%, rgba(191, 239, 255, 0.22), transparent 2.7rem),
+    radial-gradient(ellipse at 50% 66%, transparent 42%, rgba(191, 239, 255, 0.18) 43%, rgba(191, 239, 255, 0.18) 48%, transparent 49%);
+  box-shadow: 0 0 70px rgba(191, 239, 255, 0.14);
+  opacity: 0.42;
+  transform: translate(50%, -50%);
+  content: "";
+}
+
+.ring-studio.is-loaded .ring-viewer::before {
+  opacity: 0;
+}
+
+.studio-glow {
+  position: absolute;
+  right: 50%;
+  bottom: 8%;
+  z-index: 0;
+  width: min(34rem, 70vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(191, 239, 255, 0.24), rgba(125, 249, 255, 0.08) 36%, transparent 68%);
+  filter: blur(14px);
+  transform: translateX(50%);
+}
+
+.ring-viewer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  --poster-color: transparent;
+  --progress-bar-color: var(--ice);
+  --progress-bar-height: 3px;
+  cursor: grab;
+  background: transparent;
+}
+
+.ring-viewer:active {
+  cursor: grabbing;
+}
+
+.original-ring-viewer {
+  display: none;
+  --poster-color: transparent;
+  --progress-bar-color: var(--ice);
+  --progress-bar-height: 3px;
+}
+
+.original-ring-viewer.is-visible {
+  display: block;
+}
+
+.viewer-loader {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(220, 242, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(5, 7, 13, 0.62);
+  color: var(--muted);
+  backdrop-filter: blur(18px);
+  transition: opacity 350ms var(--ease), transform 350ms var(--ease);
+}
+
+.viewer-loader.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-0.5rem);
+}
+
+.viewer-loader span {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--diamond);
+  box-shadow: 0 0 16px var(--ice), 0 0 34px rgba(125, 249, 255, 0.45);
+  animation: pulseViewer 900ms ease-in-out infinite alternate;
+}
+
+.viewer-hint {
+  position: absolute;
+  right: 50%;
+  bottom: 1.2rem;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(220, 242, 255, 0.13);
+  border-radius: 999px;
+  background: rgba(5, 7, 13, 0.56);
+  color: #dff8ff;
+  backdrop-filter: blur(18px);
+  transform: translateX(50%);
+}
+
+.viewer-hint svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.customizer-panel {
+  display: grid;
+  gap: 1rem;
+  align-content: stretch;
+  border-radius: 2rem;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.panel-card {
+  position: relative;
+  overflow: hidden;
+  padding: 1.25rem;
+  border: 1px solid rgba(220, 242, 255, 0.14);
+  border-radius: 1.6rem;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.085), rgba(191, 239, 255, 0.025)),
+    rgba(5, 7, 13, 0.7);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+}
+
+.panel-card h2 {
+  margin: 0.55rem 0 0.45rem;
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+}
+
+.ring-type-options {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin-top: 1.1rem;
+}
+
+.ring-type-card {
+  display: grid;
+  gap: 0.45rem;
+  justify-items: center;
+  min-height: 6.2rem;
+  padding: 0.75rem 0.45rem;
+  border: 1px solid rgba(220, 242, 255, 0.14);
+  border-radius: 1rem;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(191, 239, 255, 0.02)),
+    rgba(255, 255, 255, 0.035);
+  color: var(--muted);
+  cursor: pointer;
+  transition: transform 280ms var(--ease), border-color 280ms var(--ease), box-shadow 280ms var(--ease), color 280ms var(--ease);
+}
+
+.ring-type-card:hover,
+.ring-type-card.is-active {
+  border-color: rgba(191, 239, 255, 0.48);
+  color: var(--text);
+  box-shadow: 0 0 28px rgba(191, 239, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transform: translateY(-3px);
+}
+
+.ring-type-card strong {
+  font-size: 0.78rem;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.ring-type-icon {
+  position: relative;
+  display: block;
+  width: 2.7rem;
+  height: 2.1rem;
+}
+
+.ring-type-icon::before {
+  position: absolute;
+  right: 50%;
+  bottom: 0;
+  width: 2.35rem;
+  height: 1.35rem;
+  border: 0.22rem solid rgba(248, 252, 255, 0.76);
+  border-radius: 50%;
+  box-shadow: 0 0 18px rgba(191, 239, 255, 0.2);
+  transform: translateX(50%);
+  content: "";
+}
+
+.ring-type-icon::after {
+  position: absolute;
+  right: 50%;
+  top: 0;
+  background: linear-gradient(135deg, #ffffff, #bfefff 52%, #f4dfb2);
+  filter: drop-shadow(0 0 10px rgba(191, 239, 255, 0.7));
+  transform: translateX(50%);
+  content: "";
+}
+
+.ring-type-icon--solitaire::after {
+  width: 0.95rem;
+  height: 0.95rem;
+  clip-path: polygon(50% 0, 100% 42%, 76% 100%, 24% 100%, 0 42%);
+}
+
+.ring-type-icon--original::after {
+  width: 1.12rem;
+  height: 1.12rem;
+  clip-path: polygon(50% 0, 100% 42%, 76% 100%, 24% 100%, 0 42%);
+  box-shadow: 0 0 0 0.18rem rgba(191, 239, 255, 0.22), 0 0 18px rgba(248, 252, 255, 0.78);
+}
+
+.ring-type-icon--halo::after {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 0.18rem solid rgba(248, 252, 255, 0.86);
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0 30%, #bfefff 31% 58%, transparent 59%);
+}
+
+.ring-type-icon--pave::after {
+  top: 0.05rem;
+  width: 1rem;
+  height: 1rem;
+  clip-path: polygon(50% 0, 100% 42%, 76% 100%, 24% 100%, 0 42%);
+  box-shadow: -1.2rem 1.1rem 0 -0.36rem #dff8ff, 1.2rem 1.1rem 0 -0.36rem #dff8ff;
+}
+
+.ring-type-icon--emerald::after {
+  width: 1.25rem;
+  height: 0.9rem;
+  border-radius: 0.18rem;
+  transform: translateX(50%) rotate(45deg);
+}
+
+.ring-type-icon--trinity::after {
+  top: 0.1rem;
+  width: 0.82rem;
+  height: 0.82rem;
+  border-radius: 50%;
+  box-shadow: -0.86rem 0.26rem 0 -0.08rem #dff8ff, 0.86rem 0.26rem 0 -0.08rem #dff8ff;
+}
+
+.metal-options {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-top: 1.2rem;
+}
+
+.metal-swatch {
+  position: relative;
+  aspect-ratio: 1;
+  border: 1px solid rgba(220, 242, 255, 0.18);
+  border-radius: 50%;
+  background: var(--swatch);
+  cursor: pointer;
+  box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.28), 0 0 22px rgba(125, 249, 255, 0.08);
+  transition: transform 260ms var(--ease), box-shadow 260ms var(--ease), border-color 260ms var(--ease);
+}
+
+.metal-swatch::after {
+  position: absolute;
+  inset: -0.28rem;
+  border: 1px solid transparent;
+  border-radius: inherit;
+  content: "";
+  transition: border-color 260ms var(--ease), box-shadow 260ms var(--ease);
+}
+
+.metal-swatch:hover,
+.metal-swatch.is-active {
+  border-color: rgba(248, 252, 255, 0.72);
+  box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.38), 0 0 34px rgba(191, 239, 255, 0.28);
+  transform: translateY(-3px) scale(1.03);
+}
+
+.metal-swatch.is-active::after {
+  border-color: rgba(191, 239, 255, 0.52);
+  box-shadow: 0 0 28px rgba(125, 249, 255, 0.22);
+}
+
+.spec-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1rem 0 1.2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.spec-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid rgba(220, 242, 255, 0.1);
+}
+
+.spec-list span {
+  color: var(--muted);
+}
+
+.spec-list strong {
+  color: var(--text);
+  text-align: left;
+}
+
+.customizer-cta {
+  width: 100%;
+}
+
+@keyframes pulseViewer {
+  from {
+    transform: scale(0.78);
+  }
+
+  to {
+    transform: scale(1.08);
+  }
+}
+
+@media (max-width: 1180px) {
+  .customizer-hero {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ring-studio {
+    grid-column: 1 / -1;
+    min-height: 42rem;
+    order: -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .customizer-shell {
+    padding-top: 6.4rem;
+  }
+
+  .customizer-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .ring-studio {
+    min-height: 28rem;
+  }
+
+  .metal-options {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .ring-type-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

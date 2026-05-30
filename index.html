@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Maison Liora - חנות תכשיטי יוקרה עם קולקציות טבעות, שרשראות, עגילים וצמידים בעיצוב אלגנטי."
+    />
+    <title>Maison Liora | תכשיטי יוקרה</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" href="frames/frame_0001.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="frames/frame_0002.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="frames/frame_0003.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="frames/frame_0004.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="frames/frame_0005.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="frames/frame_0006.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="frames/frame_0007.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="frames/frame_0008.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="frames/frame_0009.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="frames/frame_0010.jpg" fetchpriority="high" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="luxury-spotlight" aria-hidden="true"></div>
+    <div class="floating-facets" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+    <div class="feature-presenter" id="featurePresenter" aria-hidden="true">
+      <button class="feature-presenter__backdrop" type="button" aria-label="סגירת מצגת"></button>
+      <article class="feature-presenter__card" role="dialog" aria-modal="true" aria-labelledby="featurePresenterTitle">
+        <button class="feature-presenter__close magnetic" type="button" aria-label="סגירה">
+          <span></span>
+          <span></span>
+        </button>
+        <div class="feature-presenter__icon" id="featurePresenterIcon" aria-hidden="true"></div>
+        <p class="section-kicker">Maison Liora Promise</p>
+        <h2 id="featurePresenterTitle"></h2>
+        <p id="featurePresenterText"></p>
+      </article>
+    </div>
+
+    <nav class="navbar" aria-label="ניווט ראשי">
+      <a class="brand magnetic" href="#top" aria-label="Maison Liora - חזרה לראש העמוד">
+        <span class="brand__mark">L</span>
+        <span>Maison Liora</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">הבטחה</a>
+        <a href="#projects">קולקציות</a>
+        <a href="#proof">איכות</a>
+        <a href="customize.html">התאמת טבעת</a>
+        <a href="#contact">ייעוץ אישי</a>
+      </div>
+      <a class="nav-cta magnetic" href="customize.html">התאימי טבעת</a>
+    </nav>
+
+    <main id="top">
+      <!-- Sticky canvas sequence: place image frames in /frames/frame_0001.jpg ... /frames/frame_0240.jpg -->
+      <section class="frame-section" id="frameSection" aria-label="אנימציית פתיחה מבוססת גלילה">
+        <div class="canvas-stage">
+          <canvas id="heroCanvas" aria-label="רצף פריימים אינטראקטיבי"></canvas>
+          <div class="frame-vignette" aria-hidden="true"></div>
+          <div class="frame-copy" id="frameCopy">
+            <p class="section-kicker reveal-text" id="frameKicker">Maison Liora</p>
+            <h1 id="frameTitle">יהלום שנולד לאור.</h1>
+            <p id="frameLead">
+              גללי לאט וראי איך כל ניצוץ, כל קימור וכל פרט בתכשיט מתגלה כמו רגע נדיר.
+            </p>
+          </div>
+          <div class="scroll-hint" aria-hidden="true">
+            <span></span>
+            גלול
+          </div>
+        </div>
+      </section>
+
+      <!-- Textual hero after the sequence. -->
+      <section class="text-hero section-shell" id="experience">
+        <div class="ambient ambient--one" aria-hidden="true"></div>
+        <div class="ambient ambient--two" aria-hidden="true"></div>
+        <div class="particles" aria-hidden="true"></div>
+        <p class="section-kicker reveal">תכשיטים שנשארים לדורות</p>
+        <h2 class="mega-title split-title">
+          עיצוב עילי, יהלומים נבחרים ונוכחות שאי אפשר לשכוח.
+        </h2>
+        <p class="hero-lead reveal">
+          Maison Liora יוצרת טבעות, שרשראות, עגילים וצמידים בעבודת אומן, עם זהב
+          18 קראט, שיבוץ מדויק וחוויית רכישה אישית.
+        </p>
+        <div class="hero-actions reveal">
+          <a href="#projects" class="button button--primary magnetic">לצפייה בקולקציות</a>
+          <a href="customize.html" class="button button--ghost magnetic">התאמת טבעת בתלת מימד</a>
+        </div>
+      </section>
+
+      <!-- Feature cards with reveal on scroll. -->
+      <section class="features section-shell" id="features">
+        <div class="section-heading reveal">
+          <p class="section-kicker">ההבטחה שלנו</p>
+          <h2>תכשיט יוקרתי מתחיל בחומר נדיר ומסתיים בפרט שאף אחד לא מפספס.</h2>
+        </div>
+        <div class="feature-grid">
+          <article
+            class="feature-card reveal"
+            tabindex="0"
+            role="button"
+            aria-label="פתיחת פירוט: יהלומים שנבחרו ביד"
+            data-expanded="כל יהלום נבחר לפי שילוב של ברק, ניקיון, חיתוך ונוכחות. אנחנו בודקים איך האבן מחזירה אור גם בתנועה, לא רק בתמונה סטטית, כדי לוודא שהתכשיט נראה חי ומרשים בכל תאורה. בתהליך ההתאמה אפשר לבחור בין מראה נקי ועדין לבין אבן עם נוכחות דרמטית יותר, בהתאם לסגנון ולרגע שאליו התכשיט מיועד."
+          >
+            <i data-lucide="sparkles" aria-hidden="true"></i>
+            <h3>יהלומים שנבחרו ביד</h3>
+            <p>אבנים עם ברק נקי, חיתוך מדויק ונוכחות שמחזיקה אור מכל זווית.</p>
+            <span class="feature-card__hint">לפרטים <i data-lucide="arrow-left"></i></span>
+          </article>
+          <article
+            class="feature-card reveal"
+            tabindex="0"
+            role="button"
+            aria-label="פתיחת פירוט: זהב 18 קראט"
+            data-expanded="המתכת היא הבסיס לתחושה של תכשיט יוקרתי. אנחנו עובדים עם גווני מתכת שנבחרים לפי גוון העור, סוג האבן והסגנון המבוקש: פלטינום לבן ונקי, שמפניה חמה, רוז גולד עדין או גימור כהה ודרמטי. לכל בחירה יש השפעה על הברק, האופי והנוכחות של הטבעת על היד."
+          >
+            <i data-lucide="mouse-pointer-2" aria-hidden="true"></i>
+            <h3>זהב 18 קראט</h3>
+            <p>זהב צהוב, לבן או ורוד בגימור עשיר שמרגיש יוקרתי גם מקרוב.</p>
+            <span class="feature-card__hint">לפרטים <i data-lucide="arrow-left"></i></span>
+          </article>
+          <article
+            class="feature-card reveal"
+            tabindex="0"
+            role="button"
+            aria-label="פתיחת פירוט: עבודת אומן"
+            data-expanded="היוקרה נמצאת בפרטים הקטנים: גובה השיבוץ, עובי החישוק, סימטריית השיניים, ליטוש הקצוות והאיזון בין האבן למתכת. כל תכשיט נבנה כך שהאבן לא תיראה מרחפת ולא שקועה מדי, אלא יושבת בביטחון בתוך בית אבן נקי ומדויק שמחמיא ליהלום."
+          >
+            <i data-lucide="scan-line" aria-hidden="true"></i>
+            <h3>עבודת אומן</h3>
+            <p>שיבוץ נקי, קווים מאוזנים ופרופורציות שנבנות לתכשיט שנענד שנים.</p>
+            <span class="feature-card__hint">לפרטים <i data-lucide="arrow-left"></i></span>
+          </article>
+          <article
+            class="feature-card reveal"
+            tabindex="0"
+            role="button"
+            aria-label="פתיחת פירוט: התאמה אישית"
+            data-expanded="תהליך ההתאמה מתחיל בבחירת הסגנון: Solitaire, Halo, Pavé, Emerald או Three Stone. משם בוחרים גוון מתכת, עובי טבעת, גובה שיבוץ ופרטים אישיים כמו חריטה או התאמת מידה. המטרה היא ליצור טבעת שמרגישה אישית, נוחה לענידה, ומדויקת לסיפור שמאחוריה."
+          >
+            <i data-lucide="accessibility" aria-hidden="true"></i>
+            <h3>התאמה אישית</h3>
+            <p>מידות, חריטה, בחירת אבן וסגנון לפי הסיפור האישי שלך.</p>
+            <span class="feature-card__hint">לפרטים <i data-lucide="arrow-left"></i></span>
+          </article>
+        </div>
+      </section>
+
+      <!-- Modern jewelry collection gallery. -->
+      <section class="projects section-shell" id="projects">
+        <div class="section-heading reveal">
+          <p class="section-kicker">קולקציות נבחרות</p>
+          <h2>טבעות, שרשראות ועגילים שמרגישים כמו רגע של אור.</h2>
+        </div>
+        <div class="filter-tags reveal" aria-label="תגיות סינון">
+          <button class="tag is-active" type="button">הכל</button>
+          <button class="tag" type="button">טבעות</button>
+          <button class="tag" type="button">שרשראות</button>
+          <button class="tag" type="button">עגילים</button>
+        </div>
+        <div class="project-grid">
+          <article class="project-card project-card--large reveal" data-category="טבעות">
+            <img
+              src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1200&q=85"
+              alt="טבעת יהלום על רקע כהה"
+              loading="lazy"
+            />
+            <div>
+              <span>Diamond Rings</span>
+              <h3>טבעת Aurora</h3>
+            </div>
+          </article>
+          <article class="project-card reveal" data-category="שרשראות">
+            <img
+              src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=900&q=85"
+              alt="שרשרת זהב יוקרתית"
+              loading="lazy"
+            />
+            <div>
+              <span>Necklaces</span>
+              <h3>שרשרת Liora Drop</h3>
+            </div>
+          </article>
+          <article class="project-card reveal" data-category="עגילים">
+            <img
+              src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=900&q=85"
+              alt="עגילי יהלום"
+              loading="lazy"
+            />
+            <div>
+              <span>Earrings</span>
+              <h3>עגילי Celeste</h3>
+            </div>
+          </article>
+          <article class="project-card project-card--wide reveal" data-category="טבעות">
+            <img
+              src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=85"
+              alt="תכשיטי זהב ויהלומים"
+              loading="lazy"
+            />
+            <div>
+              <span>Fine Jewelry</span>
+              <h3>קולקציית Signature</h3>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Animated counters. -->
+      <section class="stats section-shell" id="proof" aria-label="סטטיסטיקות">
+        <article class="stat reveal">
+          <strong data-count="18">0</strong>
+          <span>קראט זהב</span>
+        </article>
+        <article class="stat reveal">
+          <strong data-count="240">0</strong>
+          <span>רגעי ברק בגלילה</span>
+        </article>
+        <article class="stat reveal">
+          <strong data-count="30">0</strong>
+          <span>ימי התאמה והכנה</span>
+        </article>
+        <article class="stat reveal">
+          <strong data-count="100">0</strong>
+          <span>אחוז עבודת יד</span>
+        </article>
+      </section>
+
+      <!-- Testimonials and final CTA. -->
+      <section class="testimonials section-shell" id="contact">
+        <div class="section-heading reveal">
+          <p class="section-kicker">לקוחות מספרות</p>
+          <h2>תכשיטים שנכנסים לרגעים הכי חשובים בחיים.</h2>
+        </div>
+        <div class="testimonial-grid">
+          <figure class="quote-card reveal">
+            <blockquote>
+              "הטבעת הייתה אפילו יותר מרשימה במציאות. כל פרט הרגיש אישי ומדויק."
+            </blockquote>
+            <figcaption>
+              <img src="https://i.pravatar.cc/120?img=12" alt="אווטר של דנה" loading="lazy" />
+              <span><strong>דנה לוי</strong> טבעת אירוסין בהתאמה אישית</span>
+            </figcaption>
+          </figure>
+          <figure class="quote-card reveal">
+            <blockquote>
+              "קיבלתי שרשרת עדינה עם נוכחות. האריזה, השירות והגימור היו ברמה אחרת."
+            </blockquote>
+            <figcaption>
+              <img src="https://i.pravatar.cc/120?img=32" alt="אווטר של איתי" loading="lazy" />
+              <span><strong>נועה כהן</strong> קולקציית Liora Drop</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="final-cta reveal">
+          <h2>מצאי את התכשיט שירגיש כאילו נוצר בשבילך.</h2>
+          <a class="button button--primary magnetic" href="customize.html">התאימי טבעת עכשיו</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__top"></div>
+      <div>
+        <a class="brand" href="#top">
+          <span class="brand__mark">L</span>
+          <span>Maison Liora</span>
+        </a>
+        <p>תכשיטי יוקרה בעיצוב אישי: טבעות, שרשראות, עגילים וצמידים בזהב 18 קראט.</p>
+      </div>
+      <div class="footer__links" aria-label="קישורי פוטר">
+        <a href="#features">הבטחה</a>
+        <a href="#projects">קולקציות</a>
+        <a href="#proof">איכות</a>
+        <a href="#contact">יצירת קשר</a>
+      </div>
+      <div class="socials">
+        <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+        <a href="#" aria-label="Dribbble"><i data-lucide="dribbble"></i></a>
+      </div>
+    </footer>
+  </body>
+</html>
