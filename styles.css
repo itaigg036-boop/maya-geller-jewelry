@@ -206,6 +206,27 @@ canvas {
   box-shadow: 0 0 26px rgba(200, 169, 106, 0.18);
 }
 
+.brand__mark--logo {
+  width: 3.65rem;
+  border-radius: 999px;
+  background: rgba(245, 241, 234, 0.035);
+  overflow: hidden;
+}
+
+.brand__mark--logo img,
+.logo-watermark,
+.consultation-panel__mark {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: invert(82%) sepia(29%) saturate(480%) hue-rotate(356deg) brightness(91%) contrast(88%);
+}
+
+.brand__mark--logo img {
+  padding: 0.32rem;
+}
+
 .nav-links {
   color: var(--muted);
   font-size: 0.76rem;
@@ -448,6 +469,23 @@ body.menu-open {
     linear-gradient(180deg, rgba(11, 11, 11, 0.16), rgba(11, 11, 11, 0.7));
 }
 
+.logo-watermark {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  user-select: none;
+}
+
+.logo-watermark--hero {
+  top: clamp(6rem, 13vh, 9rem);
+  right: 50%;
+  width: min(30rem, 62vw);
+  height: auto;
+  opacity: 0.09;
+  transform: translateX(50%);
+  filter: invert(82%) sepia(29%) saturate(480%) hue-rotate(356deg) brightness(91%) contrast(88%) drop-shadow(0 0 34px rgba(200, 169, 106, 0.32));
+}
+
 .hero-orb {
   position: absolute;
   z-index: 4;
@@ -615,6 +653,14 @@ body.menu-open {
 
 .quick-access {
   padding-top: 0;
+}
+
+.logo-watermark--section {
+  top: 1rem;
+  left: clamp(0rem, 4vw, 2.4rem);
+  width: min(18rem, 42vw);
+  height: auto;
+  opacity: 0.055;
 }
 
 .quick-access__grid {
@@ -968,6 +1014,7 @@ body.menu-open {
 }
 
 .consultation-panel {
+  position: relative;
   display: grid;
   gap: 1rem;
   justify-items: center;
@@ -977,6 +1024,13 @@ body.menu-open {
     radial-gradient(circle at 50% 0%, rgba(200, 169, 106, 0.18), transparent 30rem),
     linear-gradient(145deg, rgba(245, 241, 234, 0.08), rgba(245, 241, 234, 0.025));
   text-align: center;
+}
+
+.consultation-panel__mark {
+  width: min(14rem, 45vw);
+  height: auto;
+  opacity: 0.18;
+  filter: invert(82%) sepia(29%) saturate(480%) hue-rotate(356deg) brightness(91%) contrast(88%) drop-shadow(0 0 28px rgba(200, 169, 106, 0.22));
 }
 
 .consultation-panel h2 {
