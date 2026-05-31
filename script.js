@@ -55,6 +55,10 @@ let canvasWidth = 0;
 let canvasHeight = 0;
 let canvasScale = 1;
 let lenis;
+let lastRenderedFrame = -1;
+let lastPreloadCenter = -1;
+let backgroundPreloadIndex = 0;
+let isBackgroundPreloading = false;
 
 function hasFrameExperience() {
   return Boolean(canvas && ctx && frameSection);
@@ -63,9 +67,12 @@ function hasFrameExperience() {
 function startFrameLoading() {
   if (!hasFrameExperience()) return;
 
-  Array.from({ length: totalFrames }, (_, index) => index).forEach((index) => {
+  const initialFrames = isMobile ? 18 : 48;
+  for (let index = 0; index < initialFrames; index += 1) {
     loadFrame(index);
-  });
+  }
+
+  startBackgroundPreload();
 }
 
 function loadFrame(index) {
@@ -84,8 +91,8 @@ function loadFrame(index) {
   const request = new Promise((resolve) => {
     const image = new Image();
     image.decoding = "async";
-    image.loading = "eager";
-    image.fetchPriority = index < 80 ? "high" : "auto";
+    image.loading = index < 12 ? "eager" : "lazy";
+    image.fetchPriority = index < (isMobile ? 12 : 48) ? "high" : "low";
     image.onload = () => {
       images[index] = image;
       frameRequests.delete(index);
@@ -126,9 +133,13 @@ function resizeCanvas() {
 
 function getCanvasScale() {
   const deviceScale = window.devicePixelRatio || 1;
-  const premiumScale = Math.max(1, 2560 / Math.max(window.innerWidth, 1));
+  if (isMobile) {
+    return Math.min(deviceScale, 1.15);
+  }
+
+  const premiumScale = Math.max(1, 1920 / Math.max(window.innerWidth, 1));
   const desiredScale = Math.max(deviceScale, premiumScale);
-  return Math.min(desiredScale, isMobile ? 2 : 2.35);
+  return Math.min(desiredScale, 1.8);
 }
 
 function renderFrame(index) {
@@ -155,10 +166,16 @@ function renderFrame(index) {
   }
 
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-  ctx.filter = "contrast(1.08) saturate(0.92) brightness(0.88)";
+  if (!isMobile) {
+    ctx.filter = "contrast(1.08) saturate(0.92) brightness(0.88)";
+  }
   ctx.drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
-  ctx.filter = "none";
-  addCinematicFinish();
+  if (!isMobile) {
+    ctx.filter = "none";
+    addCinematicFinish();
+  }
+
+  lastRenderedFrame = index;
 }
 
 function addCinematicFinish() {
@@ -200,7 +217,11 @@ function updateFrameFromScroll() {
   const scrollY = Math.min(Math.max(-rect.top, 0), sectionHeight - windowHeight);
   const scrollableDistance = Math.max(sectionHeight - windowHeight, 1);
   const scrollFraction = scrollY / scrollableDistance;
-  targetFrame = Math.min(totalFrames - 1, Math.round(scrollFraction * (totalFrames - 1)));
+  const nextFrame = Math.min(totalFrames - 1, Math.round(scrollFraction * (totalFrames - 1)));
+
+  if (nextFrame === targetFrame && Math.abs(nextFrame - lastPreloadCenter) <= 2) return;
+
+  targetFrame = nextFrame;
   loadFrame(targetFrame);
   requestFramesAround(targetFrame);
   updateFrameStory(targetFrame);
@@ -229,13 +250,45 @@ function updateFrameStory(frameIndex) {
 function requestFramesAround(index) {
   if (!hasFrameExperience()) return;
 
-  const preloadRadius = isMobile ? 10 : 18;
+  if (Math.abs(index - lastPreloadCenter) < (isMobile ? 4 : 8)) return;
+
+  lastPreloadCenter = index;
+  const preloadRadius = isMobile ? 7 : 16;
   for (let offset = 0; offset <= preloadRadius; offset += 1) {
     const previous = index - offset;
     const next = index + offset;
     if (previous >= 0 && !images[previous]) loadFrame(previous);
     if (next < totalFrames && !images[next]) loadFrame(next);
   }
+}
+
+function startBackgroundPreload() {
+  if (isBackgroundPreloading) return;
+
+  isBackgroundPreloading = true;
+
+  const schedule =
+    window.requestIdleCallback ||
+    ((callback) => window.setTimeout(() => callback({ timeRemaining: () => 12 }), isMobile ? 120 : 40));
+
+  function pump(deadline) {
+    const batchSize = isMobile ? 2 : 8;
+    let loadedInBatch = 0;
+
+    while (backgroundPreloadIndex < totalFrames && loadedInBatch < batchSize && deadline.timeRemaining() > 2) {
+      loadFrame(backgroundPreloadIndex);
+      backgroundPreloadIndex += 1;
+      loadedInBatch += 1;
+    }
+
+    if (backgroundPreloadIndex < totalFrames) {
+      schedule(pump);
+    } else {
+      isBackgroundPreloading = false;
+    }
+  }
+
+  schedule(pump);
 }
 
 function animationLoop(time) {
@@ -247,9 +300,18 @@ function animationLoop(time) {
     updateFrameFromScroll();
   }
 
-  if (hasFrameExperience() && targetFrame !== currentFrame) {
-    currentFrame = targetFrame;
-    renderFrame(currentFrame);
+  if (hasFrameExperience() && targetFrame !== lastRenderedFrame) {
+    const smoothing = isMobile ? 0.42 : 0.34;
+    currentFrame += (targetFrame - currentFrame) * smoothing;
+
+    if (Math.abs(targetFrame - currentFrame) < 0.35) {
+      currentFrame = targetFrame;
+    }
+
+    const frameToRender = Math.round(currentFrame);
+    if (frameToRender !== lastRenderedFrame) {
+      renderFrame(frameToRender);
+    }
   }
 
   updateScrollProgress();
@@ -265,7 +327,7 @@ function updateScrollProgress() {
 }
 
 function setupLenis() {
-  if (prefersReducedMotion || !window.Lenis) return;
+  if (prefersReducedMotion || isMobile || !window.Lenis) return;
 
   lenis = new Lenis({
     duration: 0.78,

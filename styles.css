@@ -1449,6 +1449,17 @@ body.menu-open {
     display: none;
   }
 
+  .noise,
+  .luxury-spotlight,
+  .hero-orb {
+    display: none;
+  }
+
+  #heroCanvas {
+    filter: brightness(0.88);
+    will-change: auto;
+  }
+
   .navbar {
     top: 0.7rem;
     align-items: center;
