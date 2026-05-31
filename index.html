@@ -44,8 +44,40 @@
         <a href="#story">אודות</a>
         <a href="#contact">יצירת קשר</a>
       </div>
+      <button class="menu-toggle" type="button" aria-label="פתיחת תפריט" aria-controls="mobileMenu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <a class="nav-cta magnetic" href="#consultation">קביעת ייעוץ אישי</a>
     </nav>
+
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <button class="mobile-menu__backdrop" type="button" aria-label="סגירת תפריט"></button>
+      <aside class="mobile-menu__panel" aria-label="תפריט מובייל">
+        <div class="mobile-menu__header">
+          <a class="brand" href="index.html">
+            <span class="brand__mark">MG</span>
+            <span>Maya Geller</span>
+          </a>
+          <button class="mobile-menu__close" type="button" aria-label="סגירת תפריט">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <p class="section-kicker">מעבר מהיר</p>
+        <div class="mobile-menu__links">
+          <a href="index.html#top">דף הבית</a>
+          <a href="collection.html?collection=engagement">טבעות אירוסין</a>
+          <a href="collection.html?collection=wedding">טבעות נישואין</a>
+          <a href="collection.html?collection=necklaces">שרשראות</a>
+          <a href="collection.html?collection=earrings">עגילים</a>
+          <a href="index.html#products">פריטים נבחרים</a>
+          <a href="customize.html">עיצוב טבעת בתלת מימד</a>
+          <a href="index.html#consultation">ייעוץ אישי</a>
+          <a href="index.html#contact">יצירת קשר</a>
+        </div>
+      </aside>
+    </div>
 
     <main id="top">
       <section class="frame-section hero-section" id="frameSection" aria-label="פתיח קולנועי של Maya Geller Jewelry">
@@ -79,6 +111,35 @@
           Maya Geller Jewelry הוא סטודיו בוטיק בתל אביב לתכשיטי זהב בעבודת יד:
           טבעות אירוסין, טבעות מינימליסטיות, שרשראות ועגילים בקווים שקטים ונקיים.
         </p>
+      </section>
+
+      <section class="quick-access section-shell" aria-label="מעבר מהיר באתר">
+        <div class="section-heading reveal">
+          <p class="section-kicker">לא חייבים לגלול</p>
+          <h2>בחרו לאן להמשיך, והאתר יקח אתכם ישר לשם.</h2>
+        </div>
+        <div class="quick-access__grid">
+          <a class="quick-card reveal" href="collection.html?collection=engagement">
+            <span>01</span>
+            <h3>טבעות אירוסין</h3>
+            <p>מעבר ישיר לקולקציית טבעות האירוסין.</p>
+          </a>
+          <a class="quick-card reveal" href="collection.html?collection=wedding">
+            <span>02</span>
+            <h3>טבעות נישואין</h3>
+            <p>טבעות זהב נקיות ונוחות לענידה יומיומית.</p>
+          </a>
+          <a class="quick-card reveal" href="collection.html?collection=necklaces">
+            <span>03</span>
+            <h3>שרשראות ועגילים</h3>
+            <p>לפריטים עדינים, מתנות ותכשיטים ליום-יום.</p>
+          </a>
+          <a class="quick-card reveal" href="customize.html">
+            <span>04</span>
+            <h3>עיצוב אישי</h3>
+            <p>עיצוב טבעת בתלת מימד וקביעת ייעוץ.</p>
+          </a>
+        </div>
       </section>
 
       <section class="collections section-shell" id="collections">

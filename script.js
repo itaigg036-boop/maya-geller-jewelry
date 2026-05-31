@@ -491,6 +491,52 @@ function setupLuxuryInteractions() {
   updateNavState();
 }
 
+function setupMobileMenu() {
+  const menu = document.getElementById("mobileMenu");
+  const toggle = document.querySelector(".menu-toggle");
+  const closeButton = document.querySelector(".mobile-menu__close");
+  const backdrop = document.querySelector(".mobile-menu__backdrop");
+  const links = document.querySelectorAll(".mobile-menu__links a, .mobile-menu .brand");
+
+  if (!menu || !toggle) return;
+
+  function openMenu() {
+    menu.classList.add("is-open");
+    toggle.classList.add("is-open");
+    toggle.setAttribute("aria-expanded", "true");
+    menu.setAttribute("aria-hidden", "false");
+    document.body.classList.add("menu-open");
+    closeButton?.focus();
+  }
+
+  function closeMenu() {
+    menu.classList.remove("is-open");
+    toggle.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+    menu.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("menu-open");
+  }
+
+  toggle.addEventListener("click", () => {
+    if (menu.classList.contains("is-open")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  closeButton?.addEventListener("click", closeMenu);
+  backdrop?.addEventListener("click", closeMenu);
+  links.forEach((link) => link.addEventListener("click", closeMenu));
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menu.classList.contains("is-open")) {
+      closeMenu();
+      toggle.focus();
+    }
+  });
+}
+
 function setupMagneticButtons() {
   if (isMobile || prefersReducedMotion) return;
 
@@ -606,6 +652,7 @@ setupCounters();
 setupFeaturePresenter();
 setupCustomCursor();
 setupLuxuryInteractions();
+setupMobileMenu();
 setupMagneticButtons();
 setupGalleryFilters();
 setupParallax();
