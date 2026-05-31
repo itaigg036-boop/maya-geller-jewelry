@@ -57,8 +57,9 @@ let canvasScale = 1;
 let lenis;
 let lastRenderedFrame = -1;
 let lastPreloadCenter = -1;
-let backgroundPreloadIndex = 0;
-let isBackgroundPreloading = false;
+let activeFrameLoads = 0;
+let frameLoadQueue = [];
+let queuedFrames = new Set();
 
 function hasFrameExperience() {
   return Boolean(canvas && ctx && frameSection);
@@ -67,12 +68,48 @@ function hasFrameExperience() {
 function startFrameLoading() {
   if (!hasFrameExperience()) return;
 
-  const initialFrames = isMobile ? 18 : 48;
-  for (let index = 0; index < initialFrames; index += 1) {
-    loadFrame(index);
+  // Queue every frame, but keep concurrent downloads low on mobile to avoid scroll jank.
+  for (let index = 0; index < totalFrames; index += 1) {
+    queueFrameLoad(index);
+  }
+}
+
+function queueFrameLoad(index, priority = false) {
+  if (!hasFrameExperience() || index < 0 || index >= totalFrames || images[index] || frameRequests.has(index)) return;
+
+  if (queuedFrames.has(index)) {
+    if (priority) {
+      frameLoadQueue = frameLoadQueue.filter((queuedIndex) => queuedIndex !== index);
+      frameLoadQueue.unshift(index);
+    }
+    return;
   }
 
-  startBackgroundPreload();
+  queuedFrames.add(index);
+  if (priority) {
+    frameLoadQueue.unshift(index);
+  } else {
+    frameLoadQueue.push(index);
+  }
+
+  pumpFrameQueue();
+}
+
+function pumpFrameQueue() {
+  const maxConcurrentLoads = isMobile ? 4 : 10;
+
+  while (activeFrameLoads < maxConcurrentLoads && frameLoadQueue.length) {
+    const index = frameLoadQueue.shift();
+    queuedFrames.delete(index);
+
+    if (images[index] || frameRequests.has(index)) continue;
+
+    activeFrameLoads += 1;
+    loadFrame(index).finally(() => {
+      activeFrameLoads -= 1;
+      window.setTimeout(pumpFrameQueue, isMobile ? 20 : 0);
+    });
+  }
 }
 
 function loadFrame(index) {
@@ -91,8 +128,8 @@ function loadFrame(index) {
   const request = new Promise((resolve) => {
     const image = new Image();
     image.decoding = "async";
-    image.loading = index < 12 ? "eager" : "lazy";
-    image.fetchPriority = index < (isMobile ? 12 : 48) ? "high" : "low";
+    image.loading = "eager";
+    image.fetchPriority = index < (isMobile ? 36 : 72) ? "high" : "auto";
     image.onload = () => {
       images[index] = image;
       frameRequests.delete(index);
@@ -222,7 +259,7 @@ function updateFrameFromScroll() {
   if (nextFrame === targetFrame && Math.abs(nextFrame - lastPreloadCenter) <= 2) return;
 
   targetFrame = nextFrame;
-  loadFrame(targetFrame);
+  queueFrameLoad(targetFrame, true);
   requestFramesAround(targetFrame);
   updateFrameStory(targetFrame);
 }
@@ -254,41 +291,12 @@ function requestFramesAround(index) {
 
   lastPreloadCenter = index;
   const preloadRadius = isMobile ? 7 : 16;
-  for (let offset = 0; offset <= preloadRadius; offset += 1) {
+  for (let offset = preloadRadius; offset >= 0; offset -= 1) {
     const previous = index - offset;
     const next = index + offset;
-    if (previous >= 0 && !images[previous]) loadFrame(previous);
-    if (next < totalFrames && !images[next]) loadFrame(next);
+    if (previous >= 0 && !images[previous]) queueFrameLoad(previous, true);
+    if (next < totalFrames && !images[next]) queueFrameLoad(next, true);
   }
-}
-
-function startBackgroundPreload() {
-  if (isBackgroundPreloading) return;
-
-  isBackgroundPreloading = true;
-
-  const schedule =
-    window.requestIdleCallback ||
-    ((callback) => window.setTimeout(() => callback({ timeRemaining: () => 12 }), isMobile ? 120 : 40));
-
-  function pump(deadline) {
-    const batchSize = isMobile ? 2 : 8;
-    let loadedInBatch = 0;
-
-    while (backgroundPreloadIndex < totalFrames && loadedInBatch < batchSize && deadline.timeRemaining() > 2) {
-      loadFrame(backgroundPreloadIndex);
-      backgroundPreloadIndex += 1;
-      loadedInBatch += 1;
-    }
-
-    if (backgroundPreloadIndex < totalFrames) {
-      schedule(pump);
-    } else {
-      isBackgroundPreloading = false;
-    }
-  }
-
-  schedule(pump);
 }
 
 function animationLoop(time) {
